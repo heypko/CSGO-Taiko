@@ -1,0 +1,10 @@
+Title: Packet Chaser
+
+Technologies Used:
+Counter-Strike:Global Offensive
+infodemgo.exe (CS:GO Demo Parser)
+ChucK (miniAudicle)
+Ruby (Notepad++/PowerShell)
+Sony Vegas Pro 10
+
+Blurb

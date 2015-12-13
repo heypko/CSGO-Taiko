@@ -1,0 +1,15 @@
+CSGO Demo XY Proj
+
+What will it do:
+
+Layer 1:
+Play some default ambient sounds
+Provide some sort of distortion/static in static locations
+
+Layer 2:
+Provide intuition for bad places to be or confrontational areas
+Provide more information to an underused sense while in game
+
+Layer 3:
+Provide a stepping stone to hooking real time audio generation on client game data
+Potentially help music and sound become an integral part of a game experience as opposed to an afterthought

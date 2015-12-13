@@ -1,0 +1,40 @@
+Drum Ideas
+
+Ground Track, Z velocity within standard speeds
+	Heavy Hits
+
+Air Track
+	Filtered
+	Light Hits
+		
+
+
+TD#-# 	- Taiko Drum		- T
+TDH#-# 	- Taiko Drum Hit	- D
+TDS# 	- Taiko Drum Sticks	- M
+TH#	- Taiko Hit		- H
+TLS#	- Taiko Light Sticks	- L
+
+look@ctrl_seqeucner
+look@rob's code
+
+Always On - Light Sticks
+Map X Velocity to Drum Hit Gain
+Map Y Velocity to Drum Sticks Gain
+Map Z Velocity to Inverse All Gain
+
+
+Map XY Pos to pitch range?
+
+
+_________________________________
+|	|		|	|
+|B	|Mid		|CT	|
+|Site	|Double Doors	|Spawn	|
+|	|		|	|
+|	|		|	|
+|	|		|	|
+|	|		|	|
+|	|		|	|
+|x:	|-1360		|~0	|
+---------------------------------

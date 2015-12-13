@@ -89,6 +89,7 @@ SndBuf TLS1buf => g1;
 SndBuf TLS0buf => g1;
 SndBuf TD62buf => g1;
 
+// Set up array of sound directories
 string allsounds[0];
 
 // sound file
@@ -104,14 +105,16 @@ allsounds[2] => TLS2buf.read; // TLS2
 allsounds[3] => TD62buf.read; // TD62
 
 // Testrun is about 8k large
-4000 => int count;
+0 => int count;
 0 => float maxvol;
+//100.0 => f.freq;
 400.0 => float jumpspeed;
 400.0 => float topspeed;
 
-
-
-
+Math.random2f(.3,.4) => float TLS0vol => TLS0buf.gain;
+Math.random2f(.3,.4) => float TLS1vol => TLS1buf.gain;
+Math.random2f(.3,.4) => float TLS2vol => TLS2buf.gain;
+Math.random2f(.3,.4) => float TD62vol => TD62buf.gain;
 
 
 // Loop through matrix sizes
@@ -124,19 +127,29 @@ while (count <= xvel.size())
     15.625::ms => now;
     //1::ms => now;
     
-    // Different notes different times
-    // Light Stick
+    // Different instruments different times, arranged by frequency
+    // Light Stick 2
     if (count%16 == 0) {
         0 => TLS2buf.pos;
-        Math.random2f(.1,.3) => TLS2buf.gain;
-        Math.random2f(.9,1.1) => TLS2buf.rate;
+        Math.random2f(.95,1.05) => TLS2buf.rate;
+    }
+    
+    // Light Stick 1
+    if (count%24 == 0) {
+        0 => TLS1buf.pos;
+        Math.random2f(.95,1.05) => TLS1buf.rate;
+    }
+    
+    // Light Stick 0
+    if (count%40 == 0) {
+        0 => TLS0buf.pos;
+        Math.random2f(.95,1.05) => TLS0buf.rate;
     }
     
     // Drum
     if (count%128 == 0 || count%160 == 0) {
         0 => TD62buf.pos;
-        Math.random2f(.1,.3) => TD62buf.gain;
-        Math.random2f(.8,1.0) => TD62buf.rate;
+        Math.random2f(.95,1.05) => TD62buf.rate;
     }
     
     // Get velocity on the XY plane
@@ -146,14 +159,32 @@ while (count <= xvel.size())
     // Change noise velocity
     (totalspeed / topspeed) => g1.gain;
 
-    // Change high pass filter
+    
+    // Change high pass filter settings
     if (zvel[count] > 1 || zvel[count] < -1) {
-        100.0 => f.freq;
+        // Remove heavier hits while mid-air.
+        0.0 => TD62buf.gain;
+        // Gradually increase filter frequency (to avoid clipping)
+        if (f.freq() < 1330.7) {
+            10.0 + f.freq() => f.freq;
+        }
     }
     else {
-        100.0 => f.freq;
+        // Gradually bring back volume of heavier hits
+        if (TD62buf.gain() < TD62vol) {
+            .001 + TD62buf.gain() => TD62buf.gain;
+        }
+        
+        // Gradually decrease filter frequency
+        if (f.freq() > 10.0) {
+            f.freq() - 10.0 => f.freq;
+        }
     }
-     
+    
+    
+    // Frequency Debug
+    <<< TD62buf.gain() >>>;
+    
     // Increment position in the array
     ++count;
 }

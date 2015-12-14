@@ -9,10 +9,10 @@ dac => Gain g => WvOut w => blackhole;
 // in another directory.  if this isn't set, the file
 // should appear in the directory you run chuck from
 // with only the date and time.
-"chuck-session" => w.autoPrefix;
+"packetChaser5" => w.autoPrefix;
 
 // this is the output file name
-"special:auto" => w.wavFilename;
+"ootpt2audio" => w.wavFilename;
 
 // print it out
 <<<"writing to file: ", w.filename()>>>;

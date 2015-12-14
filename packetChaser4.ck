@@ -1,5 +1,5 @@
 // default file
-me.sourceDir() + "/newrunPARSED.txt" => string filename;
+me.sourceDir() + "/safeOotpt2.txt" => string filename;
 
 // look at command line
 if( me.args() > 0 ) me.arg(0) => filename;
@@ -88,6 +88,7 @@ SndBuf TLS2buf => Gain g1 => HPF f => dac;
 SndBuf TLS1buf => g1;
 SndBuf TLS0buf => g1;
 SndBuf TD62buf => g1;
+SndBuf TDH116buf => g1;
 
 // Set up array of sound directories
 string allsounds[0];
@@ -97,12 +98,14 @@ allsounds << me.sourceDir() + "Samples/TLS0.wav";
 allsounds << me.sourceDir() + "Samples/TLS1.wav";
 allsounds << me.sourceDir() + "Samples/TLS2.wav";
 allsounds << me.sourceDir() + "Samples/TD6-2.wav";
+allsounds << me.sourceDir() + "Samples/TDH1-16.wav";
 
 // load the file
 allsounds[0] => TLS0buf.read; // TLS0
 allsounds[1] => TLS1buf.read; // TLS1
 allsounds[2] => TLS2buf.read; // TLS2
 allsounds[3] => TD62buf.read; // TD62
+allsounds[4] => TDH116buf.read; // TDH116
 
 // Testrun is about 8k large
 0 => int count;
@@ -119,7 +122,8 @@ allsounds[3] => TD62buf.read; // TD62
 Math.random2f(.15,.2) => float TLS0vol => TLS0buf.gain;
 Math.random2f(.15,.2) => float TLS1vol => TLS1buf.gain;
 Math.random2f(.15,.2) => float TLS2vol => TLS2buf.gain;
-Math.random2f(.3,.4) => float TD62vol => TD62buf.gain;
+Math.random2f(.15,.2) => float TD62vol => TD62buf.gain;
+Math.random2f(.15,.2) => float TDH116vol => TDH116buf.gain;
 
 
 // Loop through matrix sizes
@@ -147,10 +151,16 @@ while (count <= xvel.size())
         Math.random2f(transLow,transHigh) => TLS0buf.rate;
     }
     
-    // Drum
+    // Drum6-2
     if (count%128 == 0 || count%160 == 0) {
         0 => TD62buf.pos;
         Math.random2f(transLow,transHigh) => TD62buf.rate;
+    }
+    
+    // Drum6-1
+    if (count%256 == 0) {
+        0 => TDH116buf.pos;
+        Math.random2f(transLow,transHigh) => TDH116buf.rate;
     }
     
     // Get velocity on the XY plane

@@ -1,10 +1,14 @@
-Title: Packet Chaser
+Title: CSGO Taiko
+Creator: Peter Ko
 
 Technologies Used:
-Counter-Strike:Global Offensive
-infodemgo.exe (CS:GO Demo Parser)
-ChucK (miniAudicle)
+Counter-Strike: Global Offensive
+demoinfogo.exe (CS:GO Demo Parser)
 Ruby (Notepad++/PowerShell)
+ChucK (miniAudicle/PowerShell)
+Audacity
 Sony Vegas Pro 10
 
-Blurb
+CSGO: Taiko experiments with using player data from recorded Counter-Strike: Global Offensive games to drive a drum track generated in ChucK.
+
+This installment currently uses a text dump and file parsing to grab the desired data from the demo of choice. It serves as a proof-of-concept for the potential to use sound as a tool to help players prevent mistakes from past experiences.

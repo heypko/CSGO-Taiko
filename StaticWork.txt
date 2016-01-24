@@ -1,0 +1,13 @@
+Double Doors CT Cross
+x pos: -537 (-737 to -337)
+y pos: +2037 (1837 to 2237)
+
+xStatic = -537
+yStatic = 2037
+
+xPos - xStatic = xDist
+Farther away = larger abs value
+On pt = 0
+
+1. hardcoded val
+2. heatmap array
